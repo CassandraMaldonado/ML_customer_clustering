@@ -1,0 +1,1 @@
+Our goal is to develop a machine learning solution that identifies meaningful customer segments based on behavior, demographics, and preferences to enable targeted marketing strategies that maximize ROI.
