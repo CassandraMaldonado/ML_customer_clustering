@@ -7,20 +7,21 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt
+import numpy as np 
 
 # Streamlit App Title
 st.title("Customer Segmentation Dashboard")
 
 # Load Data (Modify this part if loading from a file)
-@st.cache
+@st.cache_data
 def load_data():
     # Dummy Data Example (Replace with actual dataset)
     data = pd.DataFrame({
         'Customer ID': range(1, 101),
-        'Recency': pd.np.random.randint(1, 50, 100),
-        'Frequency': pd.np.random.randint(1, 20, 100),
-        'Monetary': pd.np.random.uniform(50, 500, 100),
-        'Cluster': pd.np.random.choice([0, 1, 2, 3], 100)
+        'Recency': np.random.randint(1, 50, 100),
+        'Frequency': np.random.randint(1, 20, 100),
+        'Monetary': np.random.uniform(50, 500, 100),
+        'Cluster': np.random.choice([0, 1, 2, 3], 100)
     })
     return data
 
