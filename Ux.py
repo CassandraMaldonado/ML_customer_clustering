@@ -1,10 +1,4 @@
 # %%
-%pip install streamlit
-
-# %%
-!streamlit run customer_segmentation_dashboard.py
-
-# %%
 import streamlit as st
 import pandas as pd
 import numpy as np
