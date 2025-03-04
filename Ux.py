@@ -48,7 +48,7 @@ cluster_means = df.groupby("Cluster").mean()
 
 fig3, ax = plt.subplots(figsize=(6,6), subplot_kw=dict(polar=True))
 
-angles = pd.np.linspace(0, 2 * pd.np.pi, len(cluster_means.columns), endpoint=False).tolist()
+angles = np.linspace(0, 2 * np.pi, len(cluster_means.columns), endpoint=False)
 for cluster in cluster_means.index:
     ax.plot(angles, cluster_means.loc[cluster], label=f"Cluster {cluster}")
     ax.fill(angles, cluster_means.loc[cluster], alpha=0.2)
