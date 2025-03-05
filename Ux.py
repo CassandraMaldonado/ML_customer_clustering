@@ -3,11 +3,6 @@ import os
 # Ensure required dependencies are installed
 os.system('pip install streamlit pandas plotly matplotlib')
 
-import os
-
-# Ensure required dependencies are installed
-os.system('pip install streamlit pandas plotly matplotlib')
-
 import streamlit as st
 import plotly.express as px
 import pandas as pd
