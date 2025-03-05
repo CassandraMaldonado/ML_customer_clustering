@@ -2,6 +2,13 @@ import os
 
 # Ensure required dependencies are installed
 os.system('pip install streamlit pandas plotly matplotlib')
+# Check if the dataset exists before loading
+file_path = "shopping_behavior_updated.csv"
+
+if os.path.exists(file_path):
+    df = pd.read_csv(file_path)
+else:
+    st.error(f"⚠️ The dataset '{file_path}' was not found. Please upload the file or check the path.")
 
 import streamlit as st
 import plotly.express as px
