@@ -3,111 +3,153 @@ import os
 # Ensure required dependencies are installed
 os.system('pip install streamlit pandas plotly matplotlib')
 
+import os
+
+# Ensure required dependencies are installed
+os.system('pip install streamlit pandas plotly matplotlib')
+
 import streamlit as st
 import plotly.express as px
 import pandas as pd
 
 # 🎭 Define Customer Personas with Online Image Links, Recommendations, and Expected Revenue
 persona_details = {
-    "Loyal Mid-Value Shopper": {
-        "img": "https://cdn-icons-png.flaticon.com/512/2922/2922510.png",
-        "recommendations": "Offer loyalty rewards and targeted upselling.",
+    "Loyal High-Spenders": {
+        "img": "https://cdn-icons-png.flaticon.com/512/163/163810.png",
+        "recommendations": "Create VIP membership with special rewards and exclusive products.",
+        "expected_revenue": "$200K",
+        "metrics": {
+            "Recency": "Low (frequent recent purchases)",
+            "Frequency": "High (regular shopper)",
+            "Monetary": "Very High (premium spender)",
+            "Engagement_Score": "Very High (brand-loyal shopper)"
+        }
+    },
+    "Discount Hunters": {
+        "img": "https://cdn-icons-png.flaticon.com/512/3596/3596027.png",
+        "recommendations": "Offer frequent sales, limited-time deals, and loyalty points.",
+        "expected_revenue": "$30K",
+        "metrics": {
+            "Recency": "Medium (buys frequently but waits for deals)",
+            "Frequency": "High (repeat customer but with discounts)",
+            "Monetary": "Low (spends little per purchase)",
+            "Engagement_Score": "Medium (engaged but price-sensitive)"
+        }
+    },
+    "New Customers": {
+        "img": "https://cdn-icons-png.flaticon.com/512/2920/2920316.png",
+        "recommendations": "Provide onboarding campaigns and first-purchase discounts.",
+        "expected_revenue": "$15K",
+        "metrics": {
+            "Recency": "High (new shopper)",
+            "Frequency": "Low (few past purchases)",
+            "Monetary": "Medium (varies by category)",
+            "Engagement_Score": "Low (needs nurturing)"
+        }
+    },
+    "Seasonal Shoppers": {
+        "img": "https://cdn-icons-png.flaticon.com/512/3534/3534084.png",
+        "recommendations": "Send pre-sale notifications and off-season discounts.",
         "expected_revenue": "$50K",
         "metrics": {
-            "Recency": "Low (recent purchases)",
-            "Frequency": "Low (occasional but consistent shopping)",
-            "Monetary": "Moderate (balanced spending per purchase)",
-            "Engagement_Score": "High (active and engaged shopper)"
+            "Recency": "Low (buys once per season)",
+            "Frequency": "Low (not year-round shopper)",
+            "Monetary": "Medium (seasonal spending spikes)",
+            "Engagement_Score": "Medium (engages during specific periods)"
         }
     },
-    "Super-Frequent Budget Shopper": {
-        "img": "https://cdn-icons-png.flaticon.com/512/2922/2922656.png",
-        "recommendations": "Provide discount bundles and frequent shopper deals.",
-        "expected_revenue": "$75K",
+    "Category Enthusiasts": {
+        "img": "https://cdn-icons-png.flaticon.com/512/892/892689.png",
+        "recommendations": "Offer bundles, related product suggestions, and loyalty perks.",
+        "expected_revenue": "$80K",
         "metrics": {
-            "Recency": "Moderate (steady shopping pattern)",
-            "Frequency": "Very High (most frequent shopper)",
-            "Monetary": "Low (small spending per transaction)",
-            "Engagement_Score": "Moderate (engaged but price-sensitive)"
+            "Recency": "Medium (consistent purchases in one category)",
+            "Frequency": "Medium (repeat purchases in niche items)",
+            "Monetary": "High (focused spending)",
+            "Engagement_Score": "High (brand-loyal within category)"
         }
     },
-    "Occasional High-Value Buyer": {
-        "img": "https://cdn-icons-png.flaticon.com/512/2922/2922529.png",
-        "recommendations": "Personalized offers for high-value transactions.",
-        "expected_revenue": "$120K",
+    "Luxury Buyers": {
+        "img": "https://cdn-icons-png.flaticon.com/512/4228/4228554.png",
+        "recommendations": "Offer high-end collections, exclusive services, and premium packaging.",
+        "expected_revenue": "$150K",
         "metrics": {
-            "Recency": "Very High (hasn't purchased in a long time)",
-            "Frequency": "Low (rare but strategic purchases)",
-            "Monetary": "Very High (big spender per transaction)",
-            "Engagement_Score": "Low (not highly engaged but valuable)"
+            "Recency": "Medium (buys infrequently but in large amounts)",
+            "Frequency": "Low (rare shopper)",
+            "Monetary": "Very High (luxury spender)",
+            "Engagement_Score": "Medium (expects premium experience)"
         }
     },
-    "Steady Mid-Spender": {
-        "img": "https://cdn-icons-png.flaticon.com/512/2922/2922591.png",
-        "recommendations": "Encourage repeat purchases with mid-tier promotions.",
+    "Frequent Small-Spenders": {
+        "img": "https://cdn-icons-png.flaticon.com/512/3135/3135776.png",
+        "recommendations": "Introduce subscription models, bulk discounts, and add-on purchases.",
+        "expected_revenue": "$40K",
+        "metrics": {
+            "Recency": "High (buys often)",
+            "Frequency": "High (regular shopper)",
+            "Monetary": "Low (small purchases each time)",
+            "Engagement_Score": "Medium (habitual but low-value shopper)"
+        }
+    },
+    "Impulse Buyers": {
+        "img": "https://cdn-icons-png.flaticon.com/512/1157/1157109.png",
+        "recommendations": "Encourage flash sales, time-limited offers, and personalized recommendations.",
         "expected_revenue": "$60K",
         "metrics": {
-            "Recency": "Moderate (regular shopper, not recent)",
-            "Frequency": "Moderate (balanced number of purchases)",
-            "Monetary": "Moderate (average spending per transaction)",
-            "Engagement_Score": "Moderate (interacts but isn't highly engaged)"
+            "Recency": "Medium (spontaneous purchases)",
+            "Frequency": "Medium (inconsistent but returns)",
+            "Monetary": "Medium (varied spending habits)",
+            "Engagement_Score": "High (responsive to promotions)"
+        }
+    },
+    "Subscription-Based Buyers": {
+        "img": "https://cdn-icons-png.flaticon.com/512/4825/4825556.png",
+        "recommendations": "Offer membership perks, exclusive discounts, and auto-renewals.",
+        "expected_revenue": "$90K",
+        "metrics": {
+            "Recency": "Low (regular purchases on a schedule)",
+            "Frequency": "High (subscription model)",
+            "Monetary": "Medium (consistent spending)",
+            "Engagement_Score": "Very High (brand-loyal)"
+        }
+    },
+    "Low-Engagement Customers": {
+        "img": "https://cdn-icons-png.flaticon.com/512/1828/1828665.png",
+        "recommendations": "Send re-engagement campaigns, discounts, and personalized outreach.",
+        "expected_revenue": "$10K",
+        "metrics": {
+            "Recency": "Very High (long time since last purchase)",
+            "Frequency": "Low (infrequent shopper)",
+            "Monetary": "Low (spends very little)",
+            "Engagement_Score": "Very Low (rarely interacts)"
         }
     }
 }
 
-# 📊 Sample Cluster Data (Replace with actual data)
-cluster_means = pd.DataFrame({
-    "Recency": [14, 25, 39, 16],
-    "Frequency": [5, 52, 10, 25],
-    "Monetary": [0.49, 0.48, 0.50, 0.49],
-    "Engagement_Score": [3.76, 3.75, 3.74, 3.74]
-}, index=["Loyal Mid-Value Shopper", "Super-Frequent Budget Shopper", "Occasional High-Value Buyer", "Steady Mid-Spender"])
+# 🖥️ Streamlit UI for Displaying Personas
+st.title("Customer Segmentation Insights")
 
-# 🎭 Display Customer Personas as Clickable Cards
-st.header("🛍️ Customer Personas")
+# Dropdown to select customer persona
+selected_persona = st.selectbox("Select a Customer Persona:", list(persona_details.keys()))
 
-cols = st.columns(len(persona_details))  # Create a column layout for persona selection
+# Display persona details
+persona = persona_details[selected_persona]
+st.image(persona["img"], width=150)
+st.subheader(selected_persona)
+st.write(f"**Expected Revenue:** {persona['expected_revenue']}")
+st.write(f"**Marketing Recommendations:** {persona['recommendations']}")
 
-selected_persona = None  # Store the selected persona
+# Display key engagement metrics
+st.write("### Engagement Metrics:")
+for metric, value in persona["metrics"].items():
+    st.write(f"🔹 **{metric}:** {value}")
 
-for i, (persona, details) in enumerate(persona_details.items()):
-    with cols[i]:
-        st.image(details["img"], width=120)  # Display persona image
-        if st.button(persona):
-            selected_persona = persona  # Store the selected persona
-
-# 📊 Show Persona Behavior Breakdown (if a persona is selected)
-if selected_persona:
-    st.subheader(f"📊 Show Persona Behavior Breakdown: {selected_persona}")
-
-    # 🎯 Show Marketing Recommendations
-    st.markdown(f"**📢 Recommended Strategy:** {persona_details[selected_persona]['recommendations']}")
-    st.markdown(f"💰 **Expected Revenue Impact:** {persona_details[selected_persona]['expected_revenue']}")
-
-    # 📊 Display Exact Metric Interpretation
-    st.markdown("### 🔍 Customer Behavior Breakdown:")
-    for metric, value in persona_details[selected_persona]["metrics"].items():
-        st.markdown(f"- **{metric}:** {value}")
-
-    # 📈 Bar Chart of Key Behavior Metrics
-    persona_behavior = cluster_means.loc[selected_persona]
-    fig = px.bar(persona_behavior, 
-                 x=persona_behavior.index, 
-                 y=persona_behavior.values,
-                 title=f"Customer Behavior Breakdown - {selected_persona}",
-                 labels={"x": "Metrics", "y": "Value"},
-                 color=persona_behavior.index)
-
-    st.plotly_chart(fig)
-
-    # 📖 Explanation of Metrics
-    st.markdown("### ℹ️ Understanding Customer Behavior Metrics")
-    behavior_explanations = {
-        "Recency": "📅 **Recency**: Measures how recently the customer made a purchase. Lower values indicate recent purchases, while higher values suggest longer gaps since the last purchase.",
-        "Frequency": "🔄 **Frequency**: Counts how often the customer makes purchases. Higher values suggest repeat shoppers who make frequent transactions.",
-        "Monetary": "💰 **Monetary Value**: Represents the average transaction amount. Higher values indicate high-spending customers.",
-        "Engagement_Score": "📈 **Engagement Score**: Captures interaction levels based on purchases, reviews, and engagement with the brand. A higher score suggests a more engaged customer."
-    }
-
-    for metric, explanation in behavior_explanations.items():
-        st.markdown(f"- {explanation}")
+# 📊 Cluster Distribution Chart
+st.subheader("Cluster Size Distribution")
+df = pd.read_csv("shopping_behavior_updated.csv")  # Load dataset
+cluster_counts = df["Cluster"].value_counts().reset_index()
+cluster_counts.columns = ["Cluster", "Customer Count"]
+fig = px.bar(cluster_counts, x="Cluster", y="Customer Count", text="Customer Count",
+             title="Number of Customers in Each Cluster", color="Customer Count",
+             color_continuous_scale="viridis")
+st.plotly_chart(fig)
