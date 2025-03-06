@@ -6,12 +6,14 @@ import plotly.express as px
 # Ensure required dependencies are installed
 os.system('pip install streamlit pandas plotly matplotlib')
 
-# 🎭 Define Customer Personas with Updated GMM Insights and Icons
+# 🎭 Define Customer Personas with Updated GMM Insights and Custom Icons
 persona_details = {
     "High-Value Loyal Customer": {
-        "img": "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+        "img": "https://cdn-icons-png.flaticon.com/512/1379/1379505.png",
         "size": "405 customers (10.4% of total customers)",
         "purchase_avg": "$39.65",
+        "conversion_rate": "8.5%",
+        "revenue_increase": "$150K",
         "purchase_frequency": "Fortnightly (75), Every 3 Months (72)",
         "previous_purchases": "35.9",
         "avg_rating": "4.3/5",
@@ -28,9 +30,11 @@ persona_details = {
         "product_strategy": "Offer personalized product bundles and exclusive early access to promotions."
     },
     "Recent Engaged Shopper": {
-        "img": "https://cdn-icons-png.flaticon.com/512/3135/3135762.png",
+        "img": "https://cdn-icons-png.flaticon.com/512/1260/1260235.png",
         "size": "429 customers (11.0% of total customers)",
         "purchase_avg": "$78.36",
+        "conversion_rate": "6.2%",
+        "revenue_increase": "$120K",
         "purchase_frequency": "Bi-Weekly (83), Every 3 Months (76)",
         "previous_purchases": "13.5",
         "avg_rating": "3.2/5",
@@ -50,6 +54,8 @@ persona_details = {
         "img": "https://cdn-icons-png.flaticon.com/512/3135/3135823.png",
         "size": "434 customers (11.1% of total customers)",
         "purchase_avg": "$41.45",
+        "conversion_rate": "4.5%",
+        "revenue_increase": "$80K",
         "purchase_frequency": "Annually (88), Quarterly (79)",
         "previous_purchases": "16.0",
         "avg_rating": "3.2/5",
@@ -66,9 +72,11 @@ persona_details = {
         "product_strategy": "Refine product recommendations based on customer behavior and purchase history."
     },
     "Dormant High-Value Customer": {
-        "img": "https://cdn-icons-png.flaticon.com/512/3135/3135731.png",
+        "img": "https://cdn-icons-png.flaticon.com/512/8633/8633496.png",
         "size": "457 customers (11.7% of total customers)",
         "purchase_avg": "$40.60",
+        "conversion_rate": "5.0%",
+        "revenue_increase": "$90K",
         "purchase_frequency": "Every 3 Months (88), Fortnightly (81)",
         "previous_purchases": "14.3",
         "avg_rating": "4.3/5",
@@ -85,9 +93,11 @@ persona_details = {
         "product_strategy": "Showcase luxury items, premium collections, and exclusive limited-edition products."
     },
     "Infrequent Low-Spender": {
-        "img": "https://cdn-icons-png.flaticon.com/512/3135/3135789.png",
+        "img": "https://cdn-icons-png.flaticon.com/512/18332/18332021.png",
         "size": "272 customers (7.0% of total customers)",
         "purchase_avg": "$58.74",
+        "conversion_rate": "3.5%",
+        "revenue_increase": "$60K",
         "purchase_frequency": "Weekly (272)",
         "previous_purchases": "14.0",
         "avg_rating": "3.6/5",
@@ -128,6 +138,8 @@ if selected_persona:
     st.image(persona["img"], width=100)
     st.write(f"**Size:** {persona['size']}")
     st.write(f"**Average Purchase:** {persona['purchase_avg']}")
+    st.write(f"**Conversion Rate:** {persona['conversion_rate']}")
+    st.write(f"**Expected Revenue Increase:** {persona['revenue_increase']}")
     st.write(f"**Purchase Frequency:** {persona['purchase_frequency']}")
     st.write(f"**Previous Purchases:** {persona['previous_purchases']}")
     st.write(f"**Average Rating:** {persona['avg_rating']}")
@@ -139,20 +151,7 @@ if selected_persona:
         st.write(f"- {rec}")
     st.write(f"### 🎯 Product Strategy: {persona['product_strategy']}")
 
-    # 📊 Generate Graphs for the Selected Persona
-    metrics = {
-        "Recency": [30, 20, 25, 28, 35], 
-        "Frequency": [10, 15, 8, 5, 7], 
-        "Monetary": [80, 60, 50, 75, 45], 
-        "Engagement_Score": [5, 10, 7, 12, 8]
-    }
-    metric_df = pd.DataFrame(metrics, index=list(persona_details.keys()))
-    
-    st.write("### 📊 Customer Segment Metrics")
-    fig = px.bar(metric_df.loc[selected_persona], title=f"Key Metrics for {selected_persona}", labels={"index": "Metrics", "value": "Mean Value"})
-    st.plotly_chart(fig)
-
 st.write("### 📌 Business Impact")
 st.write("- Personalized marketing campaigns based on segments can enhance conversions.")
-st.write("- GMM segmentation provides **data-driven** customer targeting.")
-st.write("- By implementing targeted strategies, Acme Inc. aims to increase revenue by **$500K** annually.")
+st.write("- GMM segmentation provides data-driven customer targeting.")
+st.write("- By implementing targeted strategies, Acme Inc. aims to increase revenue by $500K annually.")
