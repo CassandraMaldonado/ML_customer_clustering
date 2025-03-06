@@ -140,6 +140,16 @@ if selected_persona:
     st.write(f"**Average Purchase:** {persona['purchase_avg']}")
     st.write(f"**Conversion Rate:** {persona['conversion_rate']}")
     st.write(f"**Expected Revenue Increase:** {persona['revenue_increase']}")
+    st.write(f"**Purchase Frequency:** {persona['purchase_frequency']}")
+    st.write(f"**Previous Purchases:** {persona['previous_purchases']}")
+    st.write(f"**Average Rating:** {persona['avg_rating']}")
+    st.write(f"**Discount Usage:** {persona['discount_usage']}")
+    st.write(f"**Promo Code Usage:** {persona['promo_code_usage']}")
+    st.write(f"**Top Categories:** {', '.join(persona['top_categories'])}")
+    st.write("### 📌 Marketing Recommendations")
+    for rec in persona["marketing_recommendations"]:
+        st.write(f"- {rec}")
+    st.write(f"### 🎯 Product Strategy: {persona['product_strategy']}")
     
     # 📊 Generate Graphs for the Selected Persona
     metrics = {
