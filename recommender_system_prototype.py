@@ -15,8 +15,8 @@ def get_top_colors_by_season(df, top_n=3):
     """Get the most common colors per season."""
     return df.groupby("Season")["Color"].apply(lambda x: x.value_counts().index[:top_n]).to_dict()
 
-def recommend_items_with_colors(season, purchased_item, purchased_color, top_items, top_colors):
-    """Recommend the top three most popular items for the season (excluding purchased) with color preferences."""
+def recommend_items_with_colors(season, purchased_item, purchased_color, top_items, top_colors, item_images):
+    """Recommend the top three most popular items for the season (excluding purchased) with color preferences and images."""
     season_items = top_items.get(season, [])
     season_items = [item for item in season_items if item != purchased_item]
     recommended_items = season_items[:3] if len(season_items) >= 3 else season_items
@@ -24,7 +24,19 @@ def recommend_items_with_colors(season, purchased_item, purchased_color, top_ite
     season_colors = top_colors.get(season, [])
     recommended_colors = season_colors[:3] if len(season_colors) >= 3 else season_colors
     
-    return list(zip(recommended_items, recommended_colors)) if recommended_items else [("No recommendation", "No color")]
+    recommendations = []
+    for item, color in zip(recommended_items, recommended_colors):
+        image_url = item_images.get((item, color), None)  # Get image URL if available
+        recommendations.append((item, color, image_url))
+    
+    return recommendations if recommendations else [("No recommendation", "No color", None)]
+
+# Load item and color image dataset
+image_data_path = "item_color_combinations.csv"  # Ensure correct file path
+image_df = pd.read_csv(image_data_path)
+
+# Convert to dictionary for quick lookup
+item_images = {(row["Item"], row["Color"]): row["URL"] for _, row in image_df.iterrows()}
 
 # Streamlit UI
 st.set_page_config(page_title="Product Recommender", layout="wide")
@@ -55,12 +67,20 @@ if df is not None:
             
             # Generate recommendations for the customer
             recommendations = recommend_items_with_colors(
-                customer_row["Season"], customer_row["Item Purchased"], customer_row["Color"], top_items_by_season, top_colors_by_season
+                customer_row["Season"], customer_row["Item Purchased"], customer_row["Color"],
+                top_items_by_season, top_colors_by_season, item_images
             )
             
             st.subheader("📌 Recommended Products")
-            for i, (item, color) in enumerate(recommendations, 1):
-                st.write(f"**Recommendation {i}:** {item} in {color}")
+            cols = st.columns(3)  # Create three columns for images
+            
+            for i, (item, color, image_url) in enumerate(recommendations):
+                with cols[i % 3]:  # Assign each recommendation to a separate column
+                    st.write(f"**{item} in {color}**")
+                    if image_url and pd.notna(image_url):
+                        st.image(image_url, caption=f"{item} in {color}", use_column_width=True)
+                    else:
+                        st.write("Image not available")
             
         else:
             st.error("Customer ID not found in the dataset.")
