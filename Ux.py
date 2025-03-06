@@ -65,6 +65,44 @@ persona_details = {
         ],
         "product_strategy": "Refine product recommendations based on customer behavior and purchase history."
     },
+    "Dormant High-Value Customer": {
+        "img": "https://cdn-icons-png.flaticon.com/512/3135/3135731.png",
+        "size": "457 customers (11.7% of total customers)",
+        "purchase_avg": "$40.60",
+        "purchase_frequency": "Every 3 Months (88), Fortnightly (81)",
+        "previous_purchases": "14.3",
+        "avg_rating": "4.3/5",
+        "discount_usage": "40.7%",
+        "promo_code_usage": "40.7%",
+        "top_categories": ["Clothing", "Accessories"],
+        "marketing_recommendations": [
+            "Create an exclusive VIP membership program with premium perks",
+            "Provide white-glove customer service and personal shopping assistance",
+            "Offer invitation-only events and product pre-orders",
+            "Bundle high-end products with exclusive limited-time collections",
+            "Highlight brand values and storytelling in marketing materials"
+        ],
+        "product_strategy": "Showcase luxury items, premium collections, and exclusive limited-edition products."
+    },
+    "Infrequent Low-Spender": {
+        "img": "https://cdn-icons-png.flaticon.com/512/3135/3135789.png",
+        "size": "272 customers (7.0% of total customers)",
+        "purchase_avg": "$58.74",
+        "purchase_frequency": "Weekly (272)",
+        "previous_purchases": "14.0",
+        "avg_rating": "3.6/5",
+        "discount_usage": "39.3%",
+        "promo_code_usage": "39.3%",
+        "top_categories": ["Clothing", "Accessories"],
+        "marketing_recommendations": [
+            "Test various engagement strategies to refine segmentation",
+            "Develop targeted outreach campaigns to drive conversions",
+            "Analyze buying behavior for deeper insights into shopping patterns",
+            "Implement automated re-engagement emails and promotions",
+            "Create A/B tests for personalized product recommendations"
+        ],
+        "product_strategy": "Refine product recommendations based on customer behavior and purchase history."
+    }
 }
 
 # 🎯 Streamlit UI Setup
@@ -73,13 +111,15 @@ st.set_page_config(page_title="Customer Segmentation Dashboard", layout="wide")
 st.title("📊 Customer Segmentation Analysis")
 st.write("Click on a customer segment to explore its characteristics, marketing recommendations, and product strategy.")
 
-# 📌 Display clickable persona images in a row
+# 📌 Display clickable persona images above names in a row
 cols = st.columns(len(persona_details))
 selected_persona = None
 
 for i, (persona_name, persona) in enumerate(persona_details.items()):
-    if cols[i].button(persona_name):
-        selected_persona = persona_name
+    with cols[i]:
+        st.image(persona["img"], width=100)
+        if st.button(persona_name):
+            selected_persona = persona_name
 
 # 📌 Show details when a persona is selected
 if selected_persona:
@@ -101,12 +141,12 @@ if selected_persona:
 
     # 📊 Generate Graphs for the Selected Persona
     metrics = {
-        "Recency": [30, 20, 25], 
-        "Frequency": [10, 15, 8], 
-        "Monetary": [80, 60, 50], 
-        "Engagement_Score": [5, 10, 7]
+        "Recency": [30, 20, 25, 28, 35], 
+        "Frequency": [10, 15, 8, 5, 7], 
+        "Monetary": [80, 60, 50, 75, 45], 
+        "Engagement_Score": [5, 10, 7, 12, 8]
     }
-    metric_df = pd.DataFrame(metrics, index=["High-Value Loyal Customer", "Recent Engaged Shopper", "Frequent Low-Spender"])
+    metric_df = pd.DataFrame(metrics, index=list(persona_details.keys()))
     
     st.write("### 📊 Customer Segment Metrics")
     fig = px.bar(metric_df.loc[selected_persona], title=f"Key Metrics for {selected_persona}", labels={"index": "Metrics", "value": "Mean Value"})
@@ -116,6 +156,3 @@ st.write("### 📌 Business Impact")
 st.write("- Personalized marketing campaigns based on segments can enhance conversions.")
 st.write("- GMM segmentation provides **data-driven** customer targeting.")
 st.write("- By implementing targeted strategies, Acme Inc. aims to increase revenue by **$500K** annually.")
-
-st.write("### 📌 Conclusion"
-         "Acme Inc. can leverage customer segmentation insights to drive personalized marketing campaigns and product strategies. By focusing on high-value customers and engaging infrequent spenders, Acme Inc. can enhance customer loyalty and drive revenue growth.")
