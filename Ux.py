@@ -140,16 +140,21 @@ if selected_persona:
     st.write(f"**Average Purchase:** {persona['purchase_avg']}")
     st.write(f"**Conversion Rate:** {persona['conversion_rate']}")
     st.write(f"**Expected Revenue Increase:** {persona['revenue_increase']}")
-    st.write(f"**Purchase Frequency:** {persona['purchase_frequency']}")
-    st.write(f"**Previous Purchases:** {persona['previous_purchases']}")
-    st.write(f"**Average Rating:** {persona['avg_rating']}")
-    st.write(f"**Discount Usage:** {persona['discount_usage']}")
-    st.write(f"**Promo Code Usage:** {persona['promo_code_usage']}")
-    st.write(f"**Top Categories:** {', '.join(persona['top_categories'])}")
-    st.write("### 📌 Marketing Recommendations")
-    for rec in persona["marketing_recommendations"]:
-        st.write(f"- {rec}")
-    st.write(f"### 🎯 Product Strategy: {persona['product_strategy']}")
+    
+    # 📊 Generate Graphs for the Selected Persona
+    metrics = {
+        "Recency": [30, 20, 25, 28, 35], 
+        "Frequency": [10, 15, 8, 5, 7], 
+        "Monetary": [80, 60, 50, 75, 45], 
+        "Engagement_Score": [5, 10, 7, 12, 8]
+    }
+    metric_df = pd.DataFrame(metrics, index=list(persona_details.keys())).T.reset_index()
+    metric_df.columns = ["Metric", *persona_details.keys()]
+
+    st.write("### 📊 Customer Segment Metrics")
+    fig = px.bar(metric_df, x="Metric", y=selected_persona, text=selected_persona, title=f"Key Metrics for {selected_persona}", labels={"index": "Metrics", "value": "Mean Value"})
+    fig.update_traces(texttemplate='%{text}', textposition='outside')
+    st.plotly_chart(fig)
 
 st.write("### 📌 Business Impact")
 st.write("- Personalized marketing campaigns based on segments can enhance conversions.")
