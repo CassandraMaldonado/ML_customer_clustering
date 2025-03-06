@@ -1,15 +1,7 @@
 import os
-
-file_path = "Models_Final.ipynb"
-# Convert the Jupyter Notebook to a Python script
-os.system(f"jupyter nbconvert --to script {file_path}")
-
-# Ensure required dependencies are installed
-os.system('pip install streamlit pandas plotly matplotlib')
-
 import streamlit as st
-import plotly.express as px
 import pandas as pd
+import plotly.express as px
 
 # Ensure required dependencies are installed
 os.system('pip install streamlit pandas plotly matplotlib')
@@ -86,13 +78,14 @@ cols = st.columns(len(persona_details))
 selected_persona = None
 
 for i, (persona_name, persona) in enumerate(persona_details.items()):
-    if cols[i].image(persona["img"], width=100):
+    if cols[i].button(persona_name):
         selected_persona = persona_name
 
 # 📌 Show details when a persona is selected
 if selected_persona:
     persona = persona_details[selected_persona]
     st.subheader(selected_persona)
+    st.image(persona["img"], width=100)
     st.write(f"**Size:** {persona['size']}")
     st.write(f"**Average Purchase:** {persona['purchase_avg']}")
     st.write(f"**Purchase Frequency:** {persona['purchase_frequency']}")
@@ -102,7 +95,8 @@ if selected_persona:
     st.write(f"**Promo Code Usage:** {persona['promo_code_usage']}")
     st.write(f"**Top Categories:** {', '.join(persona['top_categories'])}")
     st.write("### 📌 Marketing Recommendations")
-    st.write("\n".join([f"- {rec}" for rec in persona["marketing_recommendations"]]))
+    for rec in persona["marketing_recommendations"]:
+        st.write(f"- {rec}")
     st.write(f"### 🎯 Product Strategy: {persona['product_strategy']}")
 
     # 📊 Generate Graphs for the Selected Persona
@@ -112,7 +106,7 @@ if selected_persona:
         "Monetary": [80, 60, 50], 
         "Engagement_Score": [5, 10, 7]
     }
-    metric_df = pd.DataFrame(metrics, index=["High-Value Loyal", "Recent Engaged", "Frequent Low-Spender"])
+    metric_df = pd.DataFrame(metrics, index=["High-Value Loyal Customer", "Recent Engaged Shopper", "Frequent Low-Spender"])
     
     st.write("### 📊 Customer Segment Metrics")
     fig = px.bar(metric_df.loc[selected_persona], title=f"Key Metrics for {selected_persona}", labels={"index": "Metrics", "value": "Mean Value"})
@@ -122,4 +116,6 @@ st.write("### 📌 Business Impact")
 st.write("- Personalized marketing campaigns based on segments can enhance conversions.")
 st.write("- GMM segmentation provides **data-driven** customer targeting.")
 st.write("- By implementing targeted strategies, Acme Inc. aims to increase revenue by **$500K** annually.")
-"""
+
+st.write("### 📌 Conclusion"
+         "Acme Inc. can leverage customer segmentation insights to drive personalized marketing campaigns and product strategies. By focusing on high-value customers and engaging infrequent spenders, Acme Inc. can enhance customer loyalty and drive revenue growth.")
