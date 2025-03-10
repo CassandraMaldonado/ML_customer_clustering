@@ -1,157 +1,172 @@
 import os
+import streamlit as st
+import pandas as pd
+import plotly.express as px
 
 # Ensure required dependencies are installed
 os.system('pip install streamlit pandas plotly matplotlib')
-# Check if the dataset exists before loading
-file_path = "shopping_behavior_updated.csv"
 
-if os.path.exists(file_path):
-    df = pd.read_csv(file_path)
-else:
-    st.error(f"⚠️ The dataset '{file_path}' was not found. Please upload the file or check the path.")
-
-import streamlit as st
-import plotly.express as px
-import pandas as pd
-
-# 🎭 Define Customer Personas with Online Image Links, Recommendations, and Expected Revenue
+# 🎭 Define Customer Personas with Updated GMM Insights and Custom Icons
 persona_details = {
-    "Loyal High-Spenders": {
-        "img": "https://cdn-icons-png.flaticon.com/512/163/163810.png",
-        "recommendations": "Create VIP membership with special rewards and exclusive products.",
-        "expected_revenue": "$200K",
-        "metrics": {
-            "Recency": "Low (frequent recent purchases)",
-            "Frequency": "High (regular shopper)",
-            "Monetary": "Very High (premium spender)",
-            "Engagement_Score": "Very High (brand-loyal shopper)"
-        }
+    "High-Value Loyal Customer": {
+        "img": "https://cdn-icons-png.flaticon.com/512/1379/1379505.png",
+        "size": "405 customers (10.4% of total customers)",
+        "purchase_avg": "$39.65",
+        "conversion_rate": "8.5%",
+        "revenue_increase": "$150K",
+        "purchase_frequency": "Fortnightly (75), Every 3 Months (72)",
+        "previous_purchases": "35.9",
+        "avg_rating": "4.3/5",
+        "discount_usage": "43.2%",
+        "promo_code_usage": "43.2%",
+        "top_categories": ["Clothing", "Accessories"],
+        "marketing_recommendations": [
+            "Develop a rewards program with tiered benefits to enhance loyalty",
+            "Offer personalized recommendations based on past purchases",
+            "Provide special early-access to new product launches",
+            "Encourage referrals with discounts or perks",
+            "Send engagement-driven content such as styling tips, usage guides, etc."
+        ],
+        "product_strategy": "Offer personalized product bundles and exclusive early access to promotions."
     },
-    "Discount Hunters": {
-        "img": "https://cdn-icons-png.flaticon.com/512/3596/3596027.png",
-        "recommendations": "Offer frequent sales, limited-time deals, and loyalty points.",
-        "expected_revenue": "$30K",
-        "metrics": {
-            "Recency": "Medium (buys frequently but waits for deals)",
-            "Frequency": "High (repeat customer but with discounts)",
-            "Monetary": "Low (spends little per purchase)",
-            "Engagement_Score": "Medium (engaged but price-sensitive)"
-        }
+    "Recent Engaged Shopper": {
+        "img": "https://cdn-icons-png.flaticon.com/512/1260/1260235.png",
+        "size": "429 customers (11.0% of total customers)",
+        "purchase_avg": "$78.36",
+        "conversion_rate": "6.2%",
+        "revenue_increase": "$120K",
+        "purchase_frequency": "Bi-Weekly (83), Every 3 Months (76)",
+        "previous_purchases": "13.5",
+        "avg_rating": "3.2/5",
+        "discount_usage": "41.7%",
+        "promo_code_usage": "41.7%",
+        "top_categories": ["Clothing", "Accessories"],
+        "marketing_recommendations": [
+            "Implement a nurturing email series introducing product benefits",
+            "Encourage repeat purchases with 'next purchase' incentives",
+            "Use social proof (reviews, testimonials) to build trust",
+            "Showcase best-selling items in follow-up marketing campaigns",
+            "Offer personalized first-purchase discounts to increase retention"
+        ],
+        "product_strategy": "Promote starter sets, introductory offers, and educational product content."
     },
-    "New Customers": {
-        "img": "https://cdn-icons-png.flaticon.com/512/2920/2920316.png",
-        "recommendations": "Provide onboarding campaigns and first-purchase discounts.",
-        "expected_revenue": "$15K",
-        "metrics": {
-            "Recency": "High (new shopper)",
-            "Frequency": "Low (few past purchases)",
-            "Monetary": "Medium (varies by category)",
-            "Engagement_Score": "Low (needs nurturing)"
-        }
+    "Frequent Low-Spender": {
+        "img": "https://cdn-icons-png.flaticon.com/512/3135/3135823.png",
+        "size": "434 customers (11.1% of total customers)",
+        "purchase_avg": "$41.45",
+        "conversion_rate": "4.5%",
+        "revenue_increase": "$80K",
+        "purchase_frequency": "Annually (88), Quarterly (79)",
+        "previous_purchases": "16.0",
+        "avg_rating": "3.2/5",
+        "discount_usage": "42.9%",
+        "promo_code_usage": "42.9%",
+        "top_categories": ["Clothing", "Accessories"],
+        "marketing_recommendations": [
+            "Test various engagement strategies to refine segmentation",
+            "Develop targeted outreach campaigns to drive conversions",
+            "Analyze buying behavior for deeper insights into shopping patterns",
+            "Implement automated re-engagement emails and promotions",
+            "Create A/B tests for personalized product recommendations"
+        ],
+        "product_strategy": "Refine product recommendations based on customer behavior and purchase history."
     },
-    "Seasonal Shoppers": {
-        "img": "https://cdn-icons-png.flaticon.com/512/3534/3534084.png",
-        "recommendations": "Send pre-sale notifications and off-season discounts.",
-        "expected_revenue": "$50K",
-        "metrics": {
-            "Recency": "Low (buys once per season)",
-            "Frequency": "Low (not year-round shopper)",
-            "Monetary": "Medium (seasonal spending spikes)",
-            "Engagement_Score": "Medium (engages during specific periods)"
-        }
+    "Dormant High-Value Customer": {
+        "img": "https://cdn-icons-png.flaticon.com/512/8633/8633496.png",
+        "size": "457 customers (11.7% of total customers)",
+        "purchase_avg": "$40.60",
+        "conversion_rate": "5.0%",
+        "revenue_increase": "$90K",
+        "purchase_frequency": "Every 3 Months (88), Fortnightly (81)",
+        "previous_purchases": "14.3",
+        "avg_rating": "4.3/5",
+        "discount_usage": "40.7%",
+        "promo_code_usage": "40.7%",
+        "top_categories": ["Clothing", "Accessories"],
+        "marketing_recommendations": [
+            "Create an exclusive VIP membership program with premium perks",
+            "Provide white-glove customer service and personal shopping assistance",
+            "Offer invitation-only events and product pre-orders",
+            "Bundle high-end products with exclusive limited-time collections",
+            "Highlight brand values and storytelling in marketing materials"
+        ],
+        "product_strategy": "Showcase luxury items, premium collections, and exclusive limited-edition products."
     },
-    "Category Enthusiasts": {
-        "img": "https://cdn-icons-png.flaticon.com/512/892/892689.png",
-        "recommendations": "Offer bundles, related product suggestions, and loyalty perks.",
-        "expected_revenue": "$80K",
-        "metrics": {
-            "Recency": "Medium (consistent purchases in one category)",
-            "Frequency": "Medium (repeat purchases in niche items)",
-            "Monetary": "High (focused spending)",
-            "Engagement_Score": "High (brand-loyal within category)"
-        }
-    },
-    "Luxury Buyers": {
-        "img": "https://cdn-icons-png.flaticon.com/512/4228/4228554.png",
-        "recommendations": "Offer high-end collections, exclusive services, and premium packaging.",
-        "expected_revenue": "$150K",
-        "metrics": {
-            "Recency": "Medium (buys infrequently but in large amounts)",
-            "Frequency": "Low (rare shopper)",
-            "Monetary": "Very High (luxury spender)",
-            "Engagement_Score": "Medium (expects premium experience)"
-        }
-    },
-    "Frequent Small-Spenders": {
-        "img": "https://cdn-icons-png.flaticon.com/512/3135/3135776.png",
-        "recommendations": "Introduce subscription models, bulk discounts, and add-on purchases.",
-        "expected_revenue": "$40K",
-        "metrics": {
-            "Recency": "High (buys often)",
-            "Frequency": "High (regular shopper)",
-            "Monetary": "Low (small purchases each time)",
-            "Engagement_Score": "Medium (habitual but low-value shopper)"
-        }
-    },
-    "Impulse Buyers": {
-        "img": "https://cdn-icons-png.flaticon.com/512/1157/1157109.png",
-        "recommendations": "Encourage flash sales, time-limited offers, and personalized recommendations.",
-        "expected_revenue": "$60K",
-        "metrics": {
-            "Recency": "Medium (spontaneous purchases)",
-            "Frequency": "Medium (inconsistent but returns)",
-            "Monetary": "Medium (varied spending habits)",
-            "Engagement_Score": "High (responsive to promotions)"
-        }
-    },
-    "Subscription-Based Buyers": {
-        "img": "https://cdn-icons-png.flaticon.com/512/4825/4825556.png",
-        "recommendations": "Offer membership perks, exclusive discounts, and auto-renewals.",
-        "expected_revenue": "$90K",
-        "metrics": {
-            "Recency": "Low (regular purchases on a schedule)",
-            "Frequency": "High (subscription model)",
-            "Monetary": "Medium (consistent spending)",
-            "Engagement_Score": "Very High (brand-loyal)"
-        }
-    },
-    "Low-Engagement Customers": {
-        "img": "https://cdn-icons-png.flaticon.com/512/1828/1828665.png",
-        "recommendations": "Send re-engagement campaigns, discounts, and personalized outreach.",
-        "expected_revenue": "$10K",
-        "metrics": {
-            "Recency": "Very High (long time since last purchase)",
-            "Frequency": "Low (infrequent shopper)",
-            "Monetary": "Low (spends very little)",
-            "Engagement_Score": "Very Low (rarely interacts)"
-        }
+    "Infrequent Low-Spender": {
+        "img": "https://cdn-icons-png.flaticon.com/512/18332/18332021.png",
+        "size": "272 customers (7.0% of total customers)",
+        "purchase_avg": "$58.74",
+        "conversion_rate": "3.5%",
+        "revenue_increase": "$60K",
+        "purchase_frequency": "Weekly (272)",
+        "previous_purchases": "14.0",
+        "avg_rating": "3.6/5",
+        "discount_usage": "39.3%",
+        "promo_code_usage": "39.3%",
+        "top_categories": ["Clothing", "Accessories"],
+        "marketing_recommendations": [
+            "Test various engagement strategies to refine segmentation",
+            "Develop targeted outreach campaigns to drive conversions",
+            "Analyze buying behavior for deeper insights into shopping patterns",
+            "Implement automated re-engagement emails and promotions",
+            "Create A/B tests for personalized product recommendations"
+        ],
+        "product_strategy": "Refine product recommendations based on customer behavior and purchase history."
     }
 }
 
-# 🖥️ Streamlit UI for Displaying Personas
-st.title("Customer Segmentation Insights")
+# 🎯 Streamlit UI Setup
+st.set_page_config(page_title="Customer Segmentation Dashboard", layout="wide")
 
-# Dropdown to select customer persona
-selected_persona = st.selectbox("Select a Customer Persona:", list(persona_details.keys()))
+st.title("📊 Customer Segmentation Analysis")
+st.write("Click on a customer segment to explore its characteristics, marketing recommendations, and product strategy.")
 
-# Display persona details
-persona = persona_details[selected_persona]
-st.image(persona["img"], width=150)
-st.subheader(selected_persona)
-st.write(f"**Expected Revenue:** {persona['expected_revenue']}")
-st.write(f"**Marketing Recommendations:** {persona['recommendations']}")
+# 📌 Display clickable persona images above names in a row
+cols = st.columns(len(persona_details))
+selected_persona = None
 
-# Display key engagement metrics
-st.write("### Engagement Metrics:")
-for metric, value in persona["metrics"].items():
-    st.write(f"🔹 **{metric}:** {value}")
+for i, (persona_name, persona) in enumerate(persona_details.items()):
+    with cols[i]:
+        st.image(persona["img"], width=100)
+        if st.button(persona_name):
+            selected_persona = persona_name
 
-# 📊 Cluster Distribution Chart
-st.subheader("Cluster Size Distribution")
-df = pd.read_csv("shopping_behavior_updated.csv")  # Load dataset
-cluster_counts = df["Cluster"].value_counts().reset_index()
-cluster_counts.columns = ["Cluster", "Customer Count"]
-fig = px.bar(cluster_counts, x="Cluster", y="Customer Count", text="Customer Count",
-             title="Number of Customers in Each Cluster", color="Customer Count",
-             color_continuous_scale="viridis")
-st.plotly_chart(fig)
+# 📌 Show details when a persona is selected
+if selected_persona:
+    persona = persona_details[selected_persona]
+    st.subheader(selected_persona)
+    st.image(persona["img"], width=100)
+    st.write(f"**Size:** {persona['size']}")
+    st.write(f"**Average Purchase:** {persona['purchase_avg']}")
+    st.write(f"**Conversion Rate:** {persona['conversion_rate']}")
+    st.write(f"**Expected Revenue Increase:** {persona['revenue_increase']}")
+    st.write(f"**Purchase Frequency:** {persona['purchase_frequency']}")
+    st.write(f"**Previous Purchases:** {persona['previous_purchases']}")
+    st.write(f"**Average Rating:** {persona['avg_rating']}")
+    st.write(f"**Discount Usage:** {persona['discount_usage']}")
+    st.write(f"**Promo Code Usage:** {persona['promo_code_usage']}")
+    st.write(f"**Top Categories:** {', '.join(persona['top_categories'])}")
+    st.write("### 📌 Marketing Recommendations")
+    for rec in persona["marketing_recommendations"]:
+        st.write(f"- {rec}")
+    st.write(f"### 🎯 Product Strategy: {persona['product_strategy']}")
+    
+    # 📊 Generate Graphs for the Selected Persona
+    metrics = {
+        "Recency": [30, 20, 25, 28, 35], 
+        "Frequency": [10, 15, 8, 5, 7], 
+        "Monetary": [80, 60, 50, 75, 45], 
+        "Engagement_Score": [5, 10, 7, 12, 8]
+    }
+    metric_df = pd.DataFrame(metrics, index=list(persona_details.keys())).T.reset_index()
+    metric_df.columns = ["Metric", *persona_details.keys()]
+
+    st.write("### 📊 Customer Segment Metrics")
+    fig = px.bar(metric_df, x="Metric", y=selected_persona, text=selected_persona, title=f"Key Metrics for {selected_persona}", labels={"index": "Metrics", "value": "Mean Value"})
+    fig.update_traces(texttemplate='%{text}', textposition='outside')
+    st.plotly_chart(fig)
+
+st.write("### 📌 Business Impact")
+st.write("- Personalized marketing campaigns based on segments can enhance conversions.")
+st.write("- GMM segmentation provides data-driven customer targeting.")
+st.write("- By implementing targeted strategies, Acme Inc. aims to increase revenue by $500K annually.")
