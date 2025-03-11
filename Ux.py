@@ -29,6 +29,7 @@ persona_details = {
     ],
     "product_strategy": "Offer personalized product bundles and exclusive early access to promotions."
     },
+
     "size": "990 customers",
     "img": "https://cdn-icons-png.flaticon.com/512/1260/1260235.png",
     "size": "429 customers (11.0% of total customers)",
@@ -50,6 +51,7 @@ persona_details = {
     ],
     "product_strategy": "Promote starter sets, introductory offers, and educational product content."
     },
+
     "size": "424 customers",
     "img": "https://cdn-icons-png.flaticon.com/512/3135/3135823.png",
     "size": "434 customers (11.1% of total customers)",
@@ -71,6 +73,7 @@ persona_details = {
     ],
     "product_strategy": "Refine product recommendations based on customer behavior and purchase history."
     },
+
     "size": "568 customers",
     "img": "https://cdn-icons-png.flaticon.com/512/8633/8633496.png",
     "size": "457 customers (11.7% of total customers)",
@@ -92,6 +95,7 @@ persona_details = {
     ],
     "product_strategy": "Showcase luxury items, premium collections, and exclusive limited-edition products."
     },
+
     "size": "1019 customers",
     "img": "https://cdn-icons-png.flaticon.com/512/18332/18332021.png",
     "size": "272 customers (7.0% of total customers)",
