@@ -67,8 +67,7 @@ persona_details = {
 "Implement automated re-engagement emails and promotions",
 "Create A/B tests for personalized product recommendations"
 ],
-"product_strategy": "Refine product recommendations based on customer behavior and purchase history."
-},
+"product_strategy": "Refine product recommendations based on customer behavior and purchase history.",
 "size": "568 customers",
 "img": "https://cdn-icons-png.flaticon.com/512/8633/8633496.png",
 "size": "457 customers (11.7% of total customers)",
