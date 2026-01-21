@@ -1,7 +1,7 @@
 The goal is to develop a machine learning solution that identifies meaningful customer segments based on behavior, demographics, and preferences to enable targeted marketing strategies that maximize ROI.
 
 
-Objectives
+**Objectives:**
 
 1.	Identify Key Customer Segments: Use clustering and classification techniques to categorize customers based on their behaviors and attributes.
  
