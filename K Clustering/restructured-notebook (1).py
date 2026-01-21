@@ -20,11 +20,9 @@ try:
 except ImportError:
     print("Some advanced packages are not installed. You may need to install them with pip.")
 
-# -------------------------------------------
-# Section 2: Data Loading and Initial Exploration
-# -------------------------------------------
 
-# Load the dataset
+# Initial exploration.
+
 df_original = pd.read_csv('shopping_behavior_updated.csv')
 df = df_original.copy()  # Create a working copy of the original data
 
