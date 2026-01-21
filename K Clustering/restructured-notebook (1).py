@@ -35,9 +35,9 @@ print(df.info())
 # Generate descriptive statistics
 print(df.describe())
 
-# -------------------------------------------
-# Section 3: Common Feature Engineering (Base Transformations)
-# -------------------------------------------
+
+# Base transformations.
+
 
 # 3.1 Mapping categorical frequencies to numerical values
 frequency_mapping = {
