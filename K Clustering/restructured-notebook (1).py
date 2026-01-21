@@ -171,8 +171,7 @@ print("\nK-Means Cluster Profiles:")
 print(cluster_profiles_kmeans)
 
 # -------------------------------------------
-# Section 5: Hierarchical Clustering Analysis
-# -------------------------------------------
+# Hierarchical clustering analysis.
 
 # 5.1 Create a separate copy for hierarchical clustering
 df_hierarchical = df_base.copy()
