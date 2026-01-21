@@ -75,8 +75,7 @@ df["Loyalty_Score"] = df["Frequency"] + df["Recency"] + (df["Subscription_Status
 df_base = df.copy()
 
 # -------------------------------------------
-# Section 4: K-means Clustering Analysis
-# -------------------------------------------
+# K-means analysis.
 
 # 4.1 Create a separate copy for K-means modeling
 df_kmeans = df_base.copy()
