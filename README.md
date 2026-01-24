@@ -18,3 +18,11 @@ Most marketing programs treat customers as one audience. In reality, customers b
 - track ROI by segment instead of guessing.
 
 ---
+
+## Objectives
+
+1. **Identify key customer segments** using clustering (and optional classification for segment assignment). :contentReference[oaicite:2]{index=2}  
+2. **Optimize marketing personalization** with segment profiles and recommended actions. :contentReference[oaicite:3]{index=3}  
+3. **Measure business impact** by evaluating how segmentation improves conversion and ROI. :contentReference[oaicite:4]{index=4}  
+
+---
