@@ -1,10 +1,10 @@
 # ML Customer Clustering
 
-Developed a machine learning solution to identify meaningful customer segments based on behavior, demographics, and preferences—so marketing teams can personalize campaigns, improve conversion, and maximize ROI. :contentReference[oaicite:1]{index=1}
+Developed a machine learning solution to identify meaningful customer segments based on behavior, demographics, and preferences—so marketing teams can personalize campaigns, improve conversion and maximize ROI.
 
 ---
 
-## Why this project exists (business framing)
+## Why this project exists
 
 Most marketing programs treat customers as one audience. In reality, customers behave differently:
 - some are high-value repeat buyers,
