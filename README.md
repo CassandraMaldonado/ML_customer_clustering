@@ -1,4 +1,4 @@
-# ML Customer Clustering (Customer Segmentation)
+# ML Customer Clustering
 
 Developed a machine learning solution to identify meaningful customer segments based on behavior, demographics, and preferences—so marketing teams can personalize campaigns, improve conversion, and maximize ROI. :contentReference[oaicite:1]{index=1}
 
