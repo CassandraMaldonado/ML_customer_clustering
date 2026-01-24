@@ -1,12 +1,20 @@
-# Customer Clustering 
+# ML Customer Clustering (Customer Segmentation)
 
-The goal is to develop a machine learning solution that identifies meaningful customer segments based on behavior, demographics, and preferences to enable targeted marketing strategies that maximize ROI.
+Developed a machine learning solution to identify meaningful customer segments based on behavior, demographics, and preferences—so marketing teams can personalize campaigns, improve conversion, and maximize ROI. :contentReference[oaicite:1]{index=1}
 
+---
 
-**Objectives:**
+## Why this project exists (business framing)
 
-1.	Identify Key Customer Segments: Use clustering and classification techniques to categorize customers based on their behaviors and attributes.
- 
-2.	Optimize Marketing Personalization: Provide actionable insights to improve targeted marketing strategies.
- 
-3.	Measure Business Impact: Evaluate how the proposed segmentation model improves conversion rates and ROI.
+Most marketing programs treat customers as one audience. In reality, customers behave differently:
+- some are high-value repeat buyers,
+- others only respond to discounts,
+- some browse a lot but rarely purchase,
+- some are new and need onboarding nudges.
+
+**Customer clustering** turns a large customer base into a small set of actionable segments so teams can:
+- tailor messaging and offers,
+- allocate budget more efficiently,
+- track ROI by segment instead of guessing.
+
+---
