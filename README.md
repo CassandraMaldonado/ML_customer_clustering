@@ -26,3 +26,17 @@ Most marketing programs treat customers as one audience. In reality, customers b
 3. **Measure business impact** by evaluating how segmentation improves conversion and ROI.
 
 ---
+
+## What’s inside this repo
+
+High-level repository structure (major folders):
+
+- `EDA/` — exploratory analysis, distributions, correlations, missingness, feature understanding  
+- `K Clustering/` — clustering experiments (e.g., K-Means and model selection) :contentReference[oaicite:5]{index=5}  
+- `Models/` — trained models / pipelines / supporting code artifacts :contentReference[oaicite:6]{index=6}  
+- `Customer_segmentation/` — end-to-end segmentation workflow (feature engineering → clustering → profiling) :contentReference[oaicite:7]{index=7}  
+- `Deliverables/` — final outputs (slides, reports, summaries, charts) :contentReference[oaicite:8]{index=8}  
+- `Streamlit/` — interactive app to run segmentation & inspect segments :contentReference[oaicite:9]{index=9}  
+- `Recommender system/` — (optional/extra) recommender work connected to segmentation :contentReference[oaicite:10]{index=10}  
+- `Old versions/` — previous iterations and experiments :contentReference[oaicite:11]{index=11}  
+
