@@ -23,6 +23,6 @@ Most marketing programs treat customers as one audience. In reality, customers b
 
 1. **Identify key customer segments** using clustering and optional classification for segment assignment.
 2. **Optimize marketing personalization** with segment profiles and recommended actions.
-3. **Measure business impact** by evaluating how segmentation improves conversion and ROI. :contentReference[oaicite:4]{index=4}  
+3. **Measure business impact** by evaluating how segmentation improves conversion and ROI.
 
 ---
