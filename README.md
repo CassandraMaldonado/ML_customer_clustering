@@ -38,5 +38,5 @@ High-level repository structure (major folders):
 - `Deliverables/` — final outputs (slides, reports, summaries, charts) :contentReference[oaicite:8]{index=8}  
 - `Streamlit/` — interactive app to run segmentation & inspect segments :contentReference[oaicite:9]{index=9}  
 - `Recommender system/` — (optional/extra) recommender work connected to segmentation :contentReference[oaicite:10]{index=10}  
-- `Old versions/` — previous iterations and experiments :contentReference[oaicite:11]{index=11}  
+- `Old versions/`: previous iterations and experiments.
 
