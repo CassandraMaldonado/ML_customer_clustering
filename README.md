@@ -36,7 +36,7 @@ High-level repository structure (major folders):
 - `Models/` — trained models / pipelines / supporting code artifacts :contentReference[oaicite:6]{index=6}  
 - `Customer_segmentation/` — end-to-end segmentation workflow (feature engineering → clustering → profiling) :contentReference[oaicite:7]{index=7}  
 - `Deliverables/` — final outputs (slides, reports, summaries, charts) :contentReference[oaicite:8]{index=8}  
-- `Streamlit/` — interactive app to run segmentation & inspect segments :contentReference[oaicite:9]{index=9}  
+- `Streamlit/`: app to run segmentation and inspect segments.
 - `Recommender system/`: recommender work connected to the segmentation experiment.
 - `Old versions/`: previous iterations and experiments.
 
