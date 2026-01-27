@@ -31,7 +31,7 @@ Most marketing programs treat customers as one audience. In reality, customers b
 
 High-level repository structure (major folders):
 
-- `EDA/` — exploratory analysis, distributions, correlations, missingness, feature understanding  
+- `EDA/`: exploratory analysis, distributions, correlations, missingness and feature understanding.
 - `K Clustering/` — clustering experiments (e.g., K-Means and model selection) :contentReference[oaicite:5]{index=5}  
 - `Models/` — trained models / pipelines / supporting code artifacts :contentReference[oaicite:6]{index=6}  
 - `Customer_segmentation/` — end-to-end segmentation workflow (feature engineering → clustering → profiling) :contentReference[oaicite:7]{index=7}  
