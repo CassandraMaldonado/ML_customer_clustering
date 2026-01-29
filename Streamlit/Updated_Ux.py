@@ -6,7 +6,7 @@ import plotly.express as px
 # Ensure required dependencies are installed
 os.system('pip install streamlit pandas plotly matplotlib')
 
-# 🎭 Define Customer Personas with Updated GMM Insights and Custom Icons
+# Customer Personas
 persona_details = {
     "size": "899 customers",
     "img": "https://cdn-icons-png.flaticon.com/512/1379/1379505.png",
