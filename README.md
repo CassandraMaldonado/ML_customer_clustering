@@ -65,4 +65,10 @@ Typical pipeline used in customer clustering projects like this:
    - top distinguishing features per segment
    - “who they are”, “what they want”, “how to market to them”
 
+5. **Operationalization**
+   - save model + preprocessing pipeline
+   - assign new customers to segments
+   - track outcomes (conversion, AOV, retention) by segment
+
+---
 
