@@ -72,3 +72,22 @@ Typical pipeline used in customer clustering projects like this:
 
 ---
 
+## Results (add your final numbers)
+
+Replace the placeholders with your actual outputs:
+
+- **# Segments chosen:** [K = ?]
+- **Silhouette score (or other):** [0.xx]
+- **Top segment insights:**
+  - Segment A: [name] → [1–2 defining traits] → recommended action: [campaign/offer]
+  - Segment B: [name] → [1–2 defining traits] → recommended action: [campaign/offer]
+  - Segment C: [name] → [1–2 defining traits] → recommended action: [campaign/offer]
+
+- **Business lift (if simulated or measured):**
+  - Conversion uplift: [+X%]
+  - ROI / CAC improvement: [X]
+  - Retention lift: [+X%]
+
+> If you don’t have real lift numbers, it’s still strong to include a **measurement plan** (see section below).
+
+---
