@@ -83,5 +83,5 @@ source .venv/bin/activate   # (Mac/Linux)
 # Install dependencies
 pip install -r requirements.txt
 
-# 3) Run Streamlit
+# Run Streamlit
 streamlit run Streamlit/app.py
