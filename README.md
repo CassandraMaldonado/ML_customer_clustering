@@ -75,7 +75,7 @@ Typical pipeline used in customer clustering projects like this:
 If your Streamlit folder contains the app entrypoint (commonly `app.py` or `streamlit_app.py`), you can run it like:
 
 ```bash
-# 1) Create environment
+# Create environment
 python -m venv .venv
 source .venv/bin/activate   # (Mac/Linux)
 # .venv\Scripts\activate    # (Windows)
