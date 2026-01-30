@@ -40,3 +40,29 @@ High-level repository structure (major folders):
 - `Recommender system/`: recommender work connected to the segmentation experiment.
 - `Old versions/`: previous iterations and experiments.
 
+---
+
+## Method overview
+
+Typical pipeline used in customer clustering projects like this:
+
+1. **Data preparation**
+   - clean missing values / outliers
+   - encode categoricals
+   - scale numeric features (important for distance-based clustering)
+
+2. **Feature engineering**
+   - behavioral: frequency, recency, monetary value (RFM), browsing depth, discount usage, channel preference
+   - demographics: age band, region, household attributes (if available)
+   - product preferences: category mix, brand affinity, basket size (if available)
+
+3. **Clustering**
+   - baseline: K-Means (fast + interpretable)
+   - model selection: elbow + silhouette + stability checks
+   - sanity checks: segment sizes, separability, business sense
+
+4. **Segment profiling + naming**
+   - top distinguishing features per segment
+   - “who they are”, “what they want”, “how to market to them”
+
+
