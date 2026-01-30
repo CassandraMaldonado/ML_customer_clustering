@@ -52,9 +52,9 @@ Typical pipeline used in customer clustering projects like this:
    - scale numeric features (important for distance-based clustering)
 
 2. **Feature engineering**
-   - behavioral: frequency, recency, monetary value (RFM), browsing depth, discount usage, channel preference
-   - demographics: age band, region, household attributes (if available)
-   - product preferences: category mix, brand affinity, basket size (if available)
+   - behavioral: frequency, recency, monetary value (RFM), browsing depth, discount usage, channel preference.
+   - demographics: age band, region, household attributes.
+   - product preferences: category mix, brand affinity, basket size.
 
 3. **Clustering**
    - baseline: K-Means (fast + interpretable)
